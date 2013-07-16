@@ -238,6 +238,8 @@
                 return promise.then(angular.bind(this, function (response) {
                     // we may not have response data
                     if (response.hasOwnProperty('data') && angular.isObject(response.data)) {
+                        var that = this;
+                        angular.forEach(this, function(value, key) { delete that[key]; });
                         angular.extend(this, response.data);
                     }
 
